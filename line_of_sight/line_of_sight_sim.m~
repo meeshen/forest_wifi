@@ -1,4 +1,4 @@
-clear all, clf
+%clear all, clf
 
 rng('Shuffle')
 
@@ -12,7 +12,7 @@ tree_diameter = 0.2; % 1st thinning = 0.1, 2nd = 0.2
 % generate a "sensible" number of trees for the area
 tree_number = round(randi(tree_density)*area(1)*area(2)/10000);
 
-% generate trees
+% generate trees and put them in an occupancy grid
 trees = zeros(tree_number,3);
 for i=1:tree_number
     col = 1;
@@ -33,14 +33,17 @@ Rx = generate_transceiver(area(1)+0.5,area(2)/2-0.5,1,resolution);
 
 raycasts = [];
 % raycast
-for i=1:resolution*4
-    for j=1:resolution*4
+for i=1:resolution*4+4
+    for j=1:resolution*4+4
         if raycast(Tx(i,:),Rx(j,:), trees)
             raycasts = [raycasts; Tx(i,:) Rx(j,:)];
+            raycasts = [Tx(i,:) Rx(j,:)];
+            break;
         end
     end
 end
 
+%%
 hold on, axis equal
 viscircles(trees(:,1:2), trees(:,3), 'Color', 'g');
 plot(Tx(:,1),Tx(:,2),'r')

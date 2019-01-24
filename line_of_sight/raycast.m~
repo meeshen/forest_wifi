@@ -1,0 +1,44 @@
+function no_col = raycast(Tx, Rx, trees, resolution)
+
+x1 = Tx(1);
+x2 = Rx(1);
+y1 = Tx(2);
+y2 = Rx(2);
+
+p1 = y2-y1;
+p2 = x2-x1;
+p3 = x2*y1-y2*x1;
+p4 = sqrt( (y2-y1)^2 + (x2-x1) ^2 );
+
+tree_num = length(trees);
+
+for i=1:tree_num
+    x0 = trees(i,1);
+    y0 = trees(i,2);
+    d0 = trees(i,3);
+    dist = abs(p1*x0 - p2*y0 + p3)/p4;
+    if dist<d0
+        no_col=
+
+% no_col = 1;
+% vec = (Rx-Tx);
+% vec = vec/norm(vec)*resolution;
+% tree_num = length(trees);
+% while(1)
+%     % find closest tree
+%     for i=1:tree_num
+%         vec2 = trees(i,1:2)-Tx;
+%         if max(vec2)<1
+%             dist = sqrt(sum(vec2.^2));
+%             if dist<trees(i,3)
+%                 no_col = 0;
+%                 return;
+%             end
+%         end
+%     end
+%     if ( sqrt(sum((Tx-Rx).^2))<resolution )
+%         no_col = 1;
+%         return;
+%     end
+%     Tx = Tx+vec;
+% end

@@ -7,9 +7,9 @@ ymin = y;
 xmax = xmin+size;
 ymax = ymin+size;
 
-side1 = [linspace(xmin,xmax,resolution+1); ymin*ones(1,resolution+1)];
-side2 = [xmax*ones(1,resolution+1); linspace(ymin,ymax,resolution+1)];
-side3 = [linspace(xmax,xmin,resolution+1); ymax*ones(1,resolution+1)];
-side4 = [xmin*ones(1,resolution+1); linspace(ymax,ymin,resolution+1)];
+side1 = [linspace(xmin,xmax,resolution+1)' ymin*ones(1,resolution+1)'];
+side2 = [xmax*ones(1,resolution+1)' linspace(ymin,ymax,resolution+1)'];
+side3 = [linspace(xmax,xmin,resolution+1)' ymax*ones(1,resolution+1)'];
+side4 = [xmin*ones(1,resolution+1)' linspace(ymax,ymin,resolution+1)'];
 
-points = [side1 side2 side3 side4];
+points = [side1(1:end-1,:); side2(1:end-1,:); side3(1:end-1,:); side4(1:end-1,:)];
