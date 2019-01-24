@@ -5,7 +5,7 @@ collision = 0;
 if length>1
     for i=1:length
         dist = (tree(1)-trees(i,1))^2 + (tree(2)-trees(i,2))^2;
-        if sqrt(dist) < 1.1*(tree(3)+trees(i,3))
+        if sqrt(dist) < 2*(tree(3)+trees(i,3))
             collision = 1;
             break;
         end
